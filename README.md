@@ -18,4 +18,10 @@ Using method:
 pip install only_common  
 import only_common as oc  
 oc.excommon('a.csv', 'b.csv', 'shift-jis')  
+a.csv = あいうえおかきこさ  
+b.csv = あいおかきくけこさ  
 >あいこかきこさ  
+
+a.csv = abcdefg
+b.csv = aghijk
+>agjk
