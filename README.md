@@ -22,6 +22,6 @@ a.csv = あいうえおかきこさ
 b.csv = あいおかきくけこさ  
 >あいこかきこさ  
 
-a.csv = abcdefg
+a.csv = abcdefg  
 b.csv = aghijk
 >agjk
