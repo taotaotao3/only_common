@@ -3,7 +3,7 @@ import io
 import csv
 import pprint
 import pandas as pd
-
+import pdb
 def excommon(arg_1 = 'a.csv', arg_2 = 'b.csv', arg_3 = 'shift-jis'):
 
     print('sys.argv[1]:', arg_1)
@@ -29,20 +29,39 @@ def excommon(arg_1 = 'a.csv', arg_2 = 'b.csv', arg_3 = 'shift-jis'):
                 after_content = content[:i]
                 flag_last = "1"
                 return after_content, after_content2, flag_last
-            if len(content) - 1 == i:
+            if len(content) - 1 == i and content[i] == content2[i]:
                 flag_last = "1"
+                content2 = content
+                after_content2 = content2
+                after_content = content
+                return after_content, after_content2, flag_last
+            if len(content2) - 1 == i and content[i] == content2[i]:
+                flag_last = "1"
+                content = content2
+                after_content = content
+                after_content2 = content2
+                return after_content, after_content2, flag_last
             if content[i] != content2[i]:
                 for num in range(len(content) - i):
                     if content2[i] == content[i+num]:
                         after_content = content[:i] + content[(i+num):]
+                        if i == len(content2) - 1:
+                            flag_last = "1"
+                            after_content = content2[:i+1]
+                            after_content2 = content2[:i+1]
                         return after_content, after_content2, flag_last
                 after_content2 = content2[:i] + content2[i+1:]
+                if i == len(content2) - 1:
+                    flag_last = "1"
+                    after_content = content2[:i]
+                    after_content2 = content2[:i]
                 return after_content, after_content2, flag_last
 
     while list_a != list_b:
         list_a, list_b, flag_last = duplicate_delete_csv(list_a, list_b, after_content, after_content2, flag_last) 
         if flag_last == "1":
             break
+
     StrA = "".join(list_a)
     print('Only common parts:', StrA)
     sys.exit
