@@ -1,3 +1,5 @@
+pip install only_common
+
 Name:only_common
 
 Explanation:Please use it when you want to extract only the common part of two csv.
